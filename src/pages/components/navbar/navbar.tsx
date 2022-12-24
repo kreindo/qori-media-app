@@ -22,7 +22,7 @@ export const Navbar = () => {
           }}
           className="rounded-lg px-4 py-2 text-white hover:bg-gray-700"
         >
-          <Icon icon="user" color="white" />
+          <Icon icon="new-person" color="white" />
         </button>
         <Link
           href="/profile"
