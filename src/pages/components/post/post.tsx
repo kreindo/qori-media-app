@@ -15,13 +15,9 @@ type PostType = {
 const Post = ({ post }: { post: PostType }) => {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-lg">
-      <Image
-        width={300}
-        height={300}
-        src={post.image}
-        alt={post.caption}
-        className="w-40"
-      />
+      <div className="relative h-20">
+        <Image fill src={post.image} alt={post.caption} className="w-full" />
+      </div>
       <div className="px-6 py-4">
         <div className="mb-2 flex items-center">
           <Link href={`/users/${post.user.username}`}>

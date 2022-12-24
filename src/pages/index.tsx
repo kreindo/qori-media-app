@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Layout from "./components/layout";
 import Feed from "./components/feed/feed";
+import { Timeline } from "./components/Timeline";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = ({ posts }: any) => {
@@ -14,6 +15,7 @@ const Home: NextPage = ({ posts }: any) => {
       </Head>
       <Layout>
         <main>
+          <Timeline />
           <Feed posts={posts} />
         </main>
       </Layout>
@@ -25,17 +27,17 @@ export async function getServerSideProps() {
   const posts = [
     {
       id: 1,
-      image: "https://picsum.photos/200/300?random=1",
+      image: "https://picsum.photos/1080/200?random=1",
       caption: "A beautiful sunset",
       user: {
         username: "jane_doe",
         name: "Jane Doe",
-        profileImage: "https://github.com/jane.png",
+        profileImage: "https://github.com/markuss.png",
       },
     },
     {
       id: 2,
-      image: "https://picsum.photos/200/300?random=2",
+      image: "https://picsum.photos/1080/200?random=4",
       caption: "A cute puppy",
       user: {
         username: "john_smith",

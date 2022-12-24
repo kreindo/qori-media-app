@@ -32,16 +32,23 @@ export function CreatePost() {
   return (
     <>
       {error && JSON.stringify(error)}
-      <form onSubmit={handleSubmit}>
-        <textarea
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
-        />
-        <div>
-          <button type="submit">Post</button>
-        </div>
-      </form>
+      <div className="mb-4 rounded-xl bg-white p-5 shadow-lg">
+        <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit}>
+          <textarea
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          />
+          <div>
+            <button
+              className="rounded-md bg-slate-800 py-1 px-6 text-white hover:bg-slate-500"
+              type="submit"
+            >
+              Post
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
