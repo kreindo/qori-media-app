@@ -18,11 +18,16 @@ export const Navbar = () => {
       <div className="flex items-center justify-between">
         <button
           onClick={() => {
-            signIn();
+            {
+              session == null ? signIn() : signOut();
+            }
           }}
           className="rounded-lg px-4 py-2 text-white hover:bg-gray-700"
         >
-          <Icon icon="new-person" color="white" />
+          <Icon
+            icon={`${session == null ? "new-person" : "export"}`}
+            color="white"
+          />
         </button>
         <Link
           href="/profile"

@@ -4,8 +4,10 @@ import Layout from "./components/layout";
 import Feed from "./components/feed/feed";
 import { Timeline } from "./components/Timeline";
 import { trpc } from "../utils/trpc";
+import { useSession } from "next-auth/react";
 
 const Home: NextPage = ({ posts }: any) => {
+  const { data: session } = useSession();
   return (
     <>
       <Head>
@@ -15,6 +17,9 @@ const Home: NextPage = ({ posts }: any) => {
       </Head>
       <Layout>
         <main>
+          <div className="mb-4 overflow-hidden rounded-lg bg-white p-4 text-xs shadow-lg">
+            {JSON.stringify(session)}
+          </div>
           <Timeline />
           <Feed posts={posts} />
         </main>
