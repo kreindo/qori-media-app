@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { Icon } from "@blueprintjs/core";
+import { HiUser, HiCog, HiUserAdd, HiUserRemove } from "react-icons/hi";
+import { BsBellFill } from "react-icons/bs";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Navbar = () => {
   const { data: session } = useSession();
   return (
-    <nav className="flex items-center justify-between bg-gray-800 py-4 px-6">
+    <nav className="flex items-center justify-between bg-[white] py-4 px-6">
       <Link
         href="/"
-        className="flex items-center justify-center gap-1 text-xl font-bold text-white"
+        className="flex items-center justify-center gap-1 font-[montserrat] text-sm font-bold text-slate-800"
       >
-        <span>
-          <Icon icon="book" color="white" />
-        </span>
         Qori Media
       </Link>
       <div className="flex items-center justify-between">
@@ -22,24 +21,30 @@ export const Navbar = () => {
               session == null ? signIn() : signOut();
             }
           }}
-          className="rounded-lg px-4 py-2 text-white hover:bg-gray-700"
+          className="rounded-lg px-4 py-2 hover:bg-gray-300"
         >
-          <Icon
-            icon={`${session == null ? "new-person" : "export"}`}
-            color="white"
-          />
+          {session == null ? (
+            <div className="flex items-center gap-1">
+              <span>
+                <HiUserAdd color="black" />
+              </span>
+              <p>sign in</p>
+            </div>
+          ) : (
+            <HiUserRemove color="black" />
+          )}
         </button>
         <Link
           href="/profile"
-          className="rounded-lg px-4 py-2 text-white hover:bg-gray-700"
+          className="rounded-lg px-4 py-2 hover:bg-gray-300"
         >
-          <Icon icon="user" color="white" />
+          <BsBellFill color="black" />
         </Link>
         <Link
           href="/settings"
-          className="rounded-lg px-4 py-2 text-white hover:bg-gray-700"
+          className="rounded-lg px-4 py-2 hover:bg-gray-300"
         >
-          <Icon icon="cog" color="white" />
+          <HiCog color="black" />
         </Link>
       </div>
     </nav>

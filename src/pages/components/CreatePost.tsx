@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { object, string } from "zod";
 import { trpc } from "../../utils/trpc";
+import { Button } from "@blueprintjs/core";
 
 export const postSchema = object({
   text: string({
@@ -35,6 +36,7 @@ export function CreatePost() {
       <div className="mb-4 rounded-xl bg-white p-5 shadow-lg">
         <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit}>
           <textarea
+            className="rounded-sm border"
             onChange={(e) => {
               setText(e.target.value);
             }}
