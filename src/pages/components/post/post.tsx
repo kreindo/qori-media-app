@@ -7,9 +7,9 @@ export type PostType = {
   image: string;
   caption: string;
   user: {
-    profileImage: string;
-    name: string;
     username: string;
+    name: string;
+    profileImage: string;
   };
 };
 
