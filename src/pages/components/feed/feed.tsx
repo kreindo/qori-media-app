@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "../post/post";
 
-type Post = {
+export type Post = {
   id: number;
   image: string;
   caption: string;
