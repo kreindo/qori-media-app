@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Icon } from "@blueprintjs/core";
-import { HiUser, HiCog, HiUserAdd, HiUserRemove } from "react-icons/hi";
+import { HiCog, HiUserAdd, HiUserRemove } from "react-icons/hi";
 import { BsBellFill } from "react-icons/bs";
 import { signIn, signOut, useSession } from "next-auth/react";
 

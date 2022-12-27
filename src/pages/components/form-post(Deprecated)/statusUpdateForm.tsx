@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 export default function StatusUpdateForm() {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: object) => {
     console.log(data);
+    console.log(register);
     // Send the status update to the server, etc.
   };
 

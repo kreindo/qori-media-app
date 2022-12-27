@@ -6,12 +6,11 @@ import Timeline from "./components/Timeline";
 // import { trpc } from "../utils/trpc";
 import { Montserrat } from "@next/font/google";
 import { useSession } from "next-auth/react";
-import { Session } from "next-auth";
 import { type PostType } from "./components/post/post";
 
 const montserrat = Montserrat();
 const Home: NextPage = ({ posts }: { posts?: PostType[] | undefined }) => {
-  const { data: session }: { data: any } = useSession();
+  const { data: session } = useSession();
   return (
     <>
       <Head>
@@ -30,7 +29,7 @@ const Home: NextPage = ({ posts }: { posts?: PostType[] | undefined }) => {
             <></>
           ) : (
             <div className="mb-4 overflow-hidden rounded-lg bg-white p-4 text-xs shadow-lg">
-              <p className="font-semibold">Hello there {session.user.name}</p>
+              <p className="font-semibold">Hello there {session?.user?.name}</p>
             </div>
           )}
           <Timeline />
