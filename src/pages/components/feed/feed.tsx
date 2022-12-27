@@ -1,9 +1,21 @@
+import React from "react";
 import Post from "../post/post";
 
-const Feed = ({ posts }: { posts: any }) => {
+type Post = {
+  id: number;
+  image: string;
+  caption: string;
+  user: {
+    username: string;
+    name: string;
+    profileImage: string;
+  };
+};
+
+const Feed = ({ posts }: { posts: Post[] }) => {
   return (
     <ul className="grid gap-4">
-      {posts.map((post: { id: string }) => (
+      {posts.map((post) => (
         <li key={post.id}>
           <Post post={post} />
         </li>

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { AiFillLike } from "react-icons/ai";
 
 type PostType = {
   image: string;
