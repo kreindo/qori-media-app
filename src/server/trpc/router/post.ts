@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { postSchema } from "../../../pages/components/CreatePost";
+import { postSchema } from "../../../components/CreatePost";
 import { protectedProcedure, router } from "../trpc";
 export const postRouter = router({
   create: protectedProcedure.input(postSchema).mutation(({ ctx, input }) => {

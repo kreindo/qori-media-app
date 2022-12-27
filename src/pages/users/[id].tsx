@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 const User = () => {
   const router = useRouter();
   const { id } = router.query;

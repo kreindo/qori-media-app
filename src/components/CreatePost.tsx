@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { object, string } from "zod";
-import { trpc } from "../../utils/trpc";
+import { trpc } from "../utils/trpc";
 
 export const postSchema = object({
   text: string({
