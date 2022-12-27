@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Layout from "./components/layout";
 import Feed from "./components/feed/feed";
-import { Timeline } from "./components/Timeline";
+import Timeline from "./components/Timeline";
 // import { trpc } from "../utils/trpc";
 import { Montserrat } from "@next/font/google";
 import { useSession } from "next-auth/react";

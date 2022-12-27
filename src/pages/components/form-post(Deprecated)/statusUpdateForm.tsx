@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-export function StatusUpdateForm() {
+export default function StatusUpdateForm() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {

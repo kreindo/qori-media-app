@@ -10,7 +10,7 @@ export const postSchema = object({
     .max(280),
 });
 
-export function CreatePost() {
+export default function CreatePost() {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const { mutateAsync } = trpc.post.create.useMutation();

@@ -1,4 +1,4 @@
-import { StatusUpdateForm } from "./statusUpdateForm";
+import StatusUpdateForm from "./statusUpdateForm";
 
 export default function StatusUpdate({ updates }: { updates: any }) {
   return (

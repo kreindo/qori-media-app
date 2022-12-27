@@ -1,6 +1,6 @@
-import { CreatePost } from "./CreatePost";
+import CreatePost from "./CreatePost";
 
-export function Timeline() {
+export default function Timeline() {
   return (
     <div>
       <CreatePost />

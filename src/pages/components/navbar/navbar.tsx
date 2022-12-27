@@ -4,7 +4,7 @@ import { HiUser, HiCog, HiUserAdd, HiUserRemove } from "react-icons/hi";
 import { BsBellFill } from "react-icons/bs";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-export const Navbar = () => {
+const Navbar = () => {
   const { data: session } = useSession();
   return (
     <nav className="flex items-center justify-between bg-[white] py-4 px-6">
@@ -50,3 +50,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;
