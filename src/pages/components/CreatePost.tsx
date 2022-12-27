@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { object, string } from "zod";
 import { trpc } from "../../utils/trpc";
-import { Button } from "@blueprintjs/core";
 
 export const postSchema = object({
   text: string({
@@ -15,11 +14,11 @@ export function CreatePost() {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const { mutateAsync } = trpc.post.create.useMutation();
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       await postSchema.parse({ text });
-    } catch (e) {
+    } catch (e: any) {
       setError(e.message);
       return;
     }
