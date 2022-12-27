@@ -6,11 +6,12 @@ import { Timeline } from "./components/Timeline";
 // import { trpc } from "../utils/trpc";
 import { Montserrat } from "@next/font/google";
 import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
+import { type PostType } from "./components/post/post";
 
 const montserrat = Montserrat();
-const Home: NextPage = ({ posts }: any) => {
-  const { data: session } = useSession();
-
+const Home: NextPage = ({ posts }: { posts: PostType[] }) => {
+  const { data: session }: { data: any } = useSession();
   return (
     <>
       <Head>
