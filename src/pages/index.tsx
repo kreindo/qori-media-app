@@ -10,7 +10,7 @@ import { Session } from "next-auth";
 import { type PostType } from "./components/post/post";
 
 const montserrat = Montserrat();
-const Home: NextPage = ({ posts }: { posts: PostType[] }) => {
+const Home: NextPage = ({ posts }: { posts?: PostType[] | undefined }) => {
   const { data: session }: { data: any } = useSession();
   return (
     <>
