@@ -18,7 +18,7 @@ const User = () => {
             <div className="relative flex h-16 w-16 rounded-full bg-gray-200">
               <Image
                 className="rounded-full"
-                src={session?.user?.image}
+                src={session?.user?.image || ""}
                 alt={"user profile photo"}
                 fill
               />
