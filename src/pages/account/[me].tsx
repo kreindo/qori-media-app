@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { BsThreeDots } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
 import Layout from "../../components/layout";
@@ -7,9 +6,10 @@ import Image from "next/image";
 
 const isVerified = true;
 const User = () => {
-  const router = useRouter();
-  const { user } = router.query;
   const { data: session } = useSession();
+  if (!session) {
+    return <div>login first</div>;
+  }
   return (
     <Layout>
       <div className="overflow-h, nameden rounded-xl bg-white p-3 shadow-md">
@@ -18,14 +18,14 @@ const User = () => {
             <div className="relative flex h-16 w-16 rounded-full bg-gray-200">
               <Image
                 className="rounded-full"
-                src={""}
+                src={session?.user?.image}
                 alt={"user profile photo"}
                 fill
               />
             </div>
             <div className="flex flex-col">
               <p className="flex items-center justify-center gap-1 text-[16px] font-semibold">
-                {user}
+                {session?.user?.name}
                 {isVerified ? (
                   <span>
                     <MdVerified size={14} color={"#3870FF"} />

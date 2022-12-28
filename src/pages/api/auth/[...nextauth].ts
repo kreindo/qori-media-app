@@ -16,11 +16,14 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    async redirect({ baseUrl }) {
+      return baseUrl;
+    },
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
   pages: {
-    signIn: "signin",
+    signIn: "/auth/signin",
   },
   providers: [
     // DiscordProvider({

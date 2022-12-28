@@ -2,8 +2,10 @@ import { MdHome, MdSearch } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 export default function BottomNavbar() {
+  const { data: session } = useSession();
   const router = useRouter();
   const { id } = router.query;
   return (
@@ -16,11 +18,13 @@ export default function BottomNavbar() {
           <Link href={"/search"}>
             <MdSearch size={24} />
           </Link>
-          <Link
-            href={`${id !== undefined ? `/users/${id}` : "/users/NO_USER"}`}
-          >
-            <FaUserCircle size={24} />
-          </Link>
+          {session ? (
+            <Link href={`/account/${session?.user?.name}`}>
+              <FaUserCircle size={24} />
+            </Link>
+          ) : (
+            <FaUserCircle onClick={() => signIn()} />
+          )}
         </div>
       </div>
     </>
