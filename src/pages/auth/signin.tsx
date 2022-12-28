@@ -58,8 +58,8 @@ h-20 flex-col gap-2 bg-[#3A0068] px-5 pt-32 pb-64"
   );
 }
 
-export function getStaticProps() {
-  const providers = getProviders();
+export async function getServerSideProps() {
+  const providers = await getProviders();
   return {
     props: { providers },
   };
