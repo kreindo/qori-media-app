@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Post from "../post/post";
 import { trpc } from "../../utils/trpc";
-
 // import { type PostType as PT } from "../post/post";
 
 function useScrollPos() {

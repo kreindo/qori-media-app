@@ -1,15 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
-import Feed from "../components/feed/feed";
 import Timeline from "../components/Timeline";
-// import { trpc } from "../utils/trpc";
 import { Montserrat } from "@next/font/google";
 import { useSession } from "next-auth/react";
-import { type PostType } from "../components/post/post";
 
 const montserrat = Montserrat();
-const Home: NextPage = ({ posts }: { posts?: PostType[] | undefined }) => {
+const Home: NextPage = () => {
   const { data: session } = useSession();
   return (
     <>
@@ -33,7 +30,6 @@ const Home: NextPage = ({ posts }: { posts?: PostType[] | undefined }) => {
             </div>
           )}
           <Timeline />
-          <Feed posts={posts} />
         </main>
       </Layout>
     </>
