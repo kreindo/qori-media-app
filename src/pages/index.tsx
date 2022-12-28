@@ -22,13 +22,17 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <main>
-          {session == null ? (
-            <></>
-          ) : (
-            <div className="mb-4 overflow-hidden rounded-lg bg-white p-4 text-xs shadow-lg">
-              <p className="font-semibold">Hello there {session?.user?.name}</p>
-            </div>
-          )}
+          <>
+            {session == null ? (
+              <></>
+            ) : (
+              <div className="mb-4 overflow-hidden rounded-lg bg-white p-4 text-xs shadow-lg">
+                <p className="font-semibold">
+                  Hello there {session?.user?.name}
+                </p>
+              </div>
+            )}
+          </>
           <Timeline />
         </main>
       </Layout>

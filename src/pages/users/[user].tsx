@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { BsThreeDots } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
 import Layout from "../../components/layout";
@@ -12,8 +12,8 @@ const User = ({
 }: {
   post: RouterOutputs["post"]["timeline"]["posts"][number];
 }) => {
-  const router = useRouter();
-  const { user } = router.query;
+  // const router = useRouter();
+  // const { user } = router.query;
   const { data: session } = useSession();
   return (
     <Layout>
@@ -24,7 +24,7 @@ const User = ({
               {post.author.image ? (
                 <Image
                   className="rounded-full"
-                  src={post.author.image}
+                  src={post?.author?.image}
                   alt={"user profile photo"}
                   fill
                 />
@@ -34,7 +34,7 @@ const User = ({
             </div>
             <div className="flex flex-col">
               <p className="flex items-center justify-center gap-1 text-[16px] font-semibold">
-                {post.author.name}
+                {post?.author?.name}
                 {isVerified ? (
                   <span>
                     <MdVerified size={14} color={"#3870FF"} />
