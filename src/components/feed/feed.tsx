@@ -5,7 +5,7 @@ import { trpc } from "../../utils/trpc";
 // import { type PostType as PT } from "../post/post";
 
 function useScrollPos() {
-  const [scrollPos, setScrollPos] = useState<number | undefined>();
+  const [scrollPos, setScrollPos] = useState<number>();
 
   function handleScroll() {
     const height =
@@ -29,7 +29,7 @@ function useScrollPos() {
 }
 
 const Feed = (): JSX.Element => {
-  const sp: number = useScrollPos();
+  const sp = useScrollPos();
   const { data, hasNextPage, fetchNextPage, isFetching } =
     trpc.post.timeline.useInfiniteQuery(
       {
@@ -43,7 +43,7 @@ const Feed = (): JSX.Element => {
   const posts = data?.pages.flatMap((page) => page.posts) ?? [];
 
   useEffect(() => {
-    if (sp > 90 && hasNextPage && !isFetching) {
+    if ((sp as number) > 90 && hasNextPage && !isFetching) {
       fetchNextPage();
     }
   }, [sp, hasNextPage, isFetching, fetchNextPage]);
