@@ -1,6 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { type RouterOutputs } from "../../utils/trpc";
+import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
+import updateLocale from "dayjs/plugin/updateLocale";
+
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocale);
+
+dayjs.updateLocale("en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s ago",
+    s: "1m",
+    m: "1m",
+    mm: "%dm",
+    h: "1h",
+    hh: "%dh",
+    d: "1d",
+    dd: "%dd",
+    M: "1 month",
+    MM: "%d month",
+    y: "1y",
+    yy: "%dy",
+  },
+});
 
 export type PostType = {
   id: number;
@@ -19,7 +44,11 @@ const postStatus = {
   comment: "",
 };
 
-const Post = ({ post }: { post: PostType }) => {
+const Post = ({
+  post,
+}: {
+  post: RouterOutputs["post"]["timeline"]["posts"][number];
+}) => {
   const [liked, setLiked] = React.useState(postStatus.liked);
   const [saved, setSaved] = React.useState(postStatus.saved);
   const [comment, setComment] = React.useState(postStatus.comment);
@@ -38,31 +67,40 @@ const Post = ({ post }: { post: PostType }) => {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-lg">
       <div className="mb-2 flex items-center px-4 py-4">
-        <Link href={`/users/${post.user.username}`}>
+        <Link href={`/users/${post.author.name}`}>
           <p>
-            <Image
-              width={300}
-              height={300}
-              src={post.user.profileImage}
-              alt={post.user.name}
-              className="mr-2 h-10 w-10 rounded-full"
-            />
+            {post.author.image && post.author.name ? (
+              <Image
+                width={300}
+                height={300}
+                src={post.author.image}
+                alt={post.author.name}
+                className="mr-2 h-10 w-10 rounded-full"
+              />
+            ) : (
+              <></>
+            )}
           </p>
         </Link>
         <div className="text-sm font-bold leading-none">
-          <Link href={`/users/${post.user.username}`}>
+          <Link href={`/users/${post.author.name}`}>
             <p className="text-gray-900 hover:text-gray-700">
-              {post.user.name}
+              {post.author.name}
             </p>
           </Link>
         </div>
       </div>
-      <div className="relative h-20">
+      {/* <div className="relative h-20">
         <Image fill src={post.image} alt={post.caption} className="w-full" />
-      </div>
+      </div> */}
       <div className="px-6 py-4">
-        <h1 className="font-bold">Description</h1>
-        <p className="mb-4 text-sm text-gray-700">{post.caption}</p>
+        <h1 className="flex items-center gap-1 text-xs font-bold">
+          Description{" "}
+          <span className="whitespace-nowrap text-xs font-normal text-gray-400">
+            {`- ${dayjs(post.createdAt).fromNow()}`}
+          </span>
+        </h1>
+        <p className="mb-4 text-sm text-gray-700">{post.text}</p>
       </div>
       <div className="flex justify-between px-14 py-6">
         <button

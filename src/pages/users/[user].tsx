@@ -4,9 +4,14 @@ import { MdVerified } from "react-icons/md";
 import Layout from "../../components/layout";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { type RouterOutputs } from "../../utils/trpc";
 
 const isVerified = true;
-const User = () => {
+const User = ({
+  post,
+}: {
+  post: RouterOutputs["post"]["timeline"]["posts"][number];
+}) => {
   const router = useRouter();
   const { user } = router.query;
   const { data: session } = useSession();
@@ -16,16 +21,20 @@ const User = () => {
         <div className="flex justify-between p-4">
           <div className="flex items-center justify-between gap-4">
             <div className="relative flex h-16 w-16 rounded-full bg-gray-200">
-              <Image
-                className="rounded-full"
-                src={""}
-                alt={"user profile photo"}
-                fill
-              />
+              {post.author.image ? (
+                <Image
+                  className="rounded-full"
+                  src={post.author.image}
+                  alt={"user profile photo"}
+                  fill
+                />
+              ) : (
+                <></>
+              )}
             </div>
             <div className="flex flex-col">
               <p className="flex items-center justify-center gap-1 text-[16px] font-semibold">
-                {user}
+                {post.author.name}
                 {isVerified ? (
                   <span>
                     <MdVerified size={14} color={"#3870FF"} />

@@ -23,7 +23,7 @@ export default function BottomNavbar() {
               <FaUserCircle size={24} />
             </Link>
           ) : (
-            <FaUserCircle onClick={() => signIn()} />
+            <FaUserCircle className="cursor-pointer" onClick={() => signIn()} />
           )}
         </div>
       </div>

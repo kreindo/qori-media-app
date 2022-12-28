@@ -14,25 +14,6 @@ const Navbar = () => {
         Qori Media
       </Link>
       <div className="flex items-center justify-between">
-        <button
-          onClick={() => {
-            {
-              session == null ? signIn() : signOut();
-            }
-          }}
-          className="rounded-lg px-4 py-2 hover:bg-gray-300"
-        >
-          {session == null ? (
-            <div className="flex items-center gap-1">
-              <span>
-                <HiUserAdd color="black" />
-              </span>
-              <p>sign in</p>
-            </div>
-          ) : (
-            <HiUserRemove color="black" />
-          )}
-        </button>
         <Link
           href="/profile"
           className="rounded-lg px-4 py-2 hover:bg-gray-300"

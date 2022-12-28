@@ -3,9 +3,19 @@ import { MdVerified } from "react-icons/md";
 import Layout from "../../components/layout";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
 
 const isVerified = true;
 const User = () => {
+  const [menu, setMenu] = useState(false);
+  const handleClick = () => {
+    if (menu) {
+      setMenu(false);
+    } else {
+      setMenu(true);
+    }
+  };
   const { data: session } = useSession();
   if (!session) {
     return <div>login first</div>;
@@ -38,17 +48,39 @@ const User = () => {
             </div>
           </div>
           {/* follow button with 3 dots */}
-          <div className="flex items-center justify-center gap-2">
-            {session ? (
+          <div className="relative flex items-center justify-center gap-2">
+            {!session ? (
               <button className="rounded-sm bg-[#AB44FC] px-6 py-1 text-sm font-light text-white">
                 Follow
               </button>
             ) : (
               <></>
             )}
-            <button>
+            <button onClick={handleClick}>
               <BsThreeDots size={24} />
             </button>
+            {menu ? (
+              <div className="absolute top-10 right-5 rounded-xl border bg-white">
+                <ul className="flex flex-col items-center justify-center">
+                  <li className="px-4 py-2">Kill</li>
+                  <li className="w-full border-b"></li>
+                  <li className="px-4 py-2">Suffer</li>
+                  <li className="w-full border-b"></li>
+                  <li className="whitespace-nowrap px-8 py-2">
+                    <button
+                      className="text-red-500"
+                      onClick={() => {
+                        signOut();
+                      }}
+                    >
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div>

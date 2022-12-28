@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { postSchema } from "../../../components/CreatePost";
-import { protectedProcedure, router } from "../trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 export const postRouter = router({
   create: protectedProcedure.input(postSchema).mutation(({ ctx, input }) => {
     const { prisma, session } = ctx;
@@ -17,4 +17,47 @@ export const postRouter = router({
       },
     });
   }),
+  timeline: publicProcedure
+    .input(
+      z.object({
+        cursor: z.string().nullish(),
+        limit: z.number().min(1).max(100).default(10),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const { prisma } = ctx;
+      const { cursor, limit } = input;
+
+      const posts = await prisma.post.findMany({
+        take: limit + 1,
+        orderBy: [
+          {
+            createdAt: "desc",
+          },
+        ],
+        cursor: cursor ? { id: cursor } : undefined,
+        include: {
+          author: {
+            select: {
+              name: true,
+              image: true,
+              id: true,
+            },
+          },
+        },
+      });
+
+      let nextCursor: typeof cursor | undefined = undefined;
+
+      if (posts.length > limit) {
+        const nextItem = posts.pop() as typeof posts[number];
+
+        nextCursor = nextItem.id;
+      }
+
+      return {
+        posts,
+        nextCursor,
+      };
+    }),
 });

@@ -14,7 +14,13 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["picsum.photos", "github.com", "lh3.googleusercontent.com"],
+    domains: [
+      "picsum.photos",
+      "github.com",
+      "lh3.googleusercontent.com",
+      "googleusercontent.com",
+      "cloudflare-ipfs.com",
+    ],
   },
 };
 export default config;
