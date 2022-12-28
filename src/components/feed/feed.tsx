@@ -29,7 +29,7 @@ function useScrollPos() {
 }
 
 const Feed = (): JSX.Element => {
-  const sp: number | undefined = useScrollPos();
+  const sp: number = useScrollPos();
   const { data, hasNextPage, fetchNextPage, isFetching } =
     trpc.post.timeline.useInfiniteQuery(
       {
