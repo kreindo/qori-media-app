@@ -1,6 +1,7 @@
 import { MdHome, MdSearch } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 export default function BottomNavbar() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function BottomNavbar() {
             <MdSearch size={24} />
           </Link>
           <Link
-            href={`${id !== undefined ? `/users/${id}` : `/users/NO_USER`}`}
+            href={`${id !== undefined ? `/users/${id}` : "/users/NO_USER"}`}
           >
             <FaUserCircle size={24} />
           </Link>
