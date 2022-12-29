@@ -21,20 +21,18 @@ const User = ({
         <div className="flex justify-between p-4">
           <div className="flex items-center justify-between gap-4">
             <div className="relative flex h-16 w-16 rounded-full bg-gray-200">
-              {post.author.image ? (
+              {post.author.image && (
                 <Image
                   className="rounded-full"
-                  src={post?.author?.image}
+                  src={post.author.image}
                   alt={"user profile photo"}
                   fill
                 />
-              ) : (
-                <></>
               )}
             </div>
             <div className="flex flex-col">
               <p className="flex items-center justify-center gap-1 text-[16px] font-semibold">
-                {post?.author?.name}
+                {post.author.name}
                 {isVerified ? (
                   <span>
                     <MdVerified size={14} color={"#3870FF"} />

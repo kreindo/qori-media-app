@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { HiCog, HiUserAdd, HiUserRemove } from "react-icons/hi";
+import { HiCog } from "react-icons/hi";
 import { BsBellFill } from "react-icons/bs";
-import { signIn, signOut, useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return (
     <nav className="flex items-center justify-between bg-[white] py-4 px-6">
       <Link
