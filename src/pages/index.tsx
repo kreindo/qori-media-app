@@ -20,8 +20,8 @@ const Home: NextPage = () => {
           }
         `}</style>
       </Head>
-      <Layout>
-        <main>
+      <Layout className="font-[montserrat]">
+        <main className="font-[montserrat]">
           <>
             {session == null ? (
               <></>

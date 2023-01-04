@@ -5,6 +5,7 @@ import { type RouterOutputs } from "../../utils/trpc";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import updateLocale from "dayjs/plugin/updateLocale";
+import AudioPlayer from "../audio-player/audioPlayer";
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
@@ -93,6 +94,9 @@ const Post = ({
       {/* <div className="relative h-20">
         <Image fill src={post.image} alt={post.caption} className="w-full" />
       </div> */}
+      <div className="px-6">
+        <AudioPlayer />
+      </div>
       <div className="px-6 py-4">
         <h1 className="flex items-center gap-1 text-xs font-bold">
           Description{" "}
