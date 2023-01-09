@@ -15,7 +15,7 @@ const Navbar = () => {
       </Link>
       <div className="flex items-center justify-between">
         <Link
-          href="/profile"
+          href="/notifications"
           className="rounded-lg px-4 py-2 hover:bg-gray-300"
         >
           <BsBellFill color="black" />

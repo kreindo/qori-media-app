@@ -1,8 +1,7 @@
-import { EventHandler, useEffect, useState } from "react";
-import { NonUndefined } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 export default function AudioPlayer() {
-  const [quran, setQuran] = useState(null);
+  const [ayat, setAyat] = useState<string[]>([]);
   const [view, setView]: [view: boolean, setView: (a: boolean) => void] =
     useState(false);
   useEffect(() => {
@@ -16,7 +15,7 @@ export default function AudioPlayer() {
     );
     const data = await quran.json();
     console.log(data.data);
-    setQuran(data);
+    setAyat(data);
   };
 
   const handlePlay = (e: React.MouseEvent<HTMLAudioElement, MouseEvent>) => {
@@ -38,16 +37,18 @@ export default function AudioPlayer() {
     e.preventDefault;
     setView(false);
   };
-
+  
   return (
     <div>
-      {quran?.data?.audio && (
+      {ayat?.data ? (
         <audio
           className="w-full"
-          src={quran?.data?.audio}
+          src={ayat?.data?.audio || ""}
           controls
           onPlay={handlePlay}
         />
+      ) : (
+        <></>
       )}
       <div className="py-2" />
 
@@ -70,7 +71,7 @@ export default function AudioPlayer() {
             </div>
             <div className="py-2" />
             <div className="px-5 text-center text-xl font-medium">
-              {quran?.data?.text}
+              {ayat?.data?.text}
             </div>
           </div>
         </>
