@@ -1,0 +1,14 @@
+diff a/tailwind.config.ts b/tailwind.config.ts	(rejected hunks)
+@@ -1,8 +1,9 @@
+-/** @type {import('tailwindcss').Config} */
+-module.exports = {
++import { type Config } from "tailwindcss";
++
++export default {
+   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+   theme: {
+     extend: {},
+   },
+   plugins: [],
+-};
++} satisfies Config;
