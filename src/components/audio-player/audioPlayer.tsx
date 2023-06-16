@@ -37,7 +37,7 @@ export default function AudioPlayer() {
     e.preventDefault;
     setView(false);
   };
-  
+
   return (
     <div>
       {ayat?.data ? (
