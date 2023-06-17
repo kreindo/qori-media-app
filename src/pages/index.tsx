@@ -2,10 +2,10 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
 import Timeline from "../components/Timeline";
-import { Montserrat } from "@next/font/google";
+import { Montserrat } from "next/font/google";
 import { useSession } from "next-auth/react";
 
-const montserrat = Montserrat();
+const montserrat = Montserrat({ preload: false });
 const Home: NextPage = () => {
   const { data: session } = useSession();
   return (
