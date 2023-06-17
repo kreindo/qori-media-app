@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { object, string } from "zod";
-import { trpc } from "../utils/trpc";
+import { api } from "~/utils/api";
 
 export const postSchema = object({
   text: string({
@@ -13,7 +13,7 @@ export const postSchema = object({
 export default function CreatePost() {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
-  const { mutateAsync } = trpc.post.create.useMutation();
+  const { mutateAsync } = api.post.create.useMutation();
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -42,7 +42,7 @@ export default function CreatePost() {
           />
           <div>
             <button
-              className="rounded-md bg-slate-800 py-1 px-6 text-white hover:bg-slate-500"
+              className="rounded-md bg-slate-800 px-6 py-1 text-white hover:bg-slate-500"
               type="submit"
             >
               Post
