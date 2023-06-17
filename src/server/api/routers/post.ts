@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { postSchema } from "../../../components/CreatePost";
-import { protectedProcedure, publicProcedure, router } from "../trpc";
-export const postRouter = router({
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+export const postRouter = createTRPCRouter({
   create: protectedProcedure.input(postSchema).mutation(({ ctx, input }) => {
     const { prisma, session } = ctx;
     const { text } = input;
