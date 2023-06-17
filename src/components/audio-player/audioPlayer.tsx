@@ -5,7 +5,7 @@ export default function AudioPlayer() {
   const [view, setView]: [view: boolean, setView: (a: boolean) => void] =
     useState(false);
   useEffect(() => {
-    getData();
+    void getData();
   }, []);
 
   const getData = async () => {
@@ -19,7 +19,7 @@ export default function AudioPlayer() {
   };
 
   const handlePlay = (e: React.MouseEvent<HTMLAudioElement, MouseEvent>) => {
-    e.preventDefault;
+    () => e.preventDefault();
     const audios: HTMLCollectionOf<HTMLAudioElement> =
       document.getElementsByTagName("audio");
     for (let i = 0, len = audios.length; i < len; i++) {
@@ -55,7 +55,7 @@ export default function AudioPlayer() {
       {view == true ? (
         <>
           <div className="flex flex-col items-end justify-between rounded-xl bg-white py-3  shadow-md">
-            <div className="flex w-full items-end justify-end gap-2 rounded-t-xl bg-gray-100 pr-2 pt-2 pb-4">
+            <div className="flex w-full items-end justify-end gap-2 rounded-t-xl bg-gray-100 pb-4 pr-2 pt-2">
               <button
                 className="rounded-full bg-red-400 p-1 text-xs shadow-md"
                 onClick={handleClose}

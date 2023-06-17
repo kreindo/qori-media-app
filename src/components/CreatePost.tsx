@@ -18,7 +18,7 @@ export default function CreatePost() {
     e.preventDefault();
     try {
       await postSchema.parse({ text });
-    } catch (e: any) {
+    } catch (e: { message: string }) {
       setError(e.message);
       return;
     }
@@ -27,7 +27,7 @@ export default function CreatePost() {
       return;
     }
 
-    mutateAsync({ text });
+    void mutateAsync({ text }); // need refactor (reason: escaped with void)
   }
   return (
     <>

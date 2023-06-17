@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { postSchema } from "../../../components/CreatePost";
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 export const postRouter = createTRPCRouter({
   create: protectedProcedure.input(postSchema).mutation(({ ctx, input }) => {
     const { prisma, session } = ctx;
@@ -50,7 +54,7 @@ export const postRouter = createTRPCRouter({
       let nextCursor: typeof cursor | undefined = undefined;
 
       if (posts.length > limit) {
-        const nextItem = posts.pop() as typeof posts[number];
+        const nextItem = posts.pop() as (typeof posts)[number];
 
         nextCursor = nextItem.id;
       }

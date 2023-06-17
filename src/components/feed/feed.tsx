@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Post from "../post/post";
-import { trpc } from "../../utils/trpc";
+import { api } from "~/utils/api";
 // import { type PostType as PT } from "../post/post";
 
 function useScrollPos() {
@@ -30,7 +30,7 @@ function useScrollPos() {
 const Feed = (): JSX.Element => {
   const sp = useScrollPos();
   const { data, hasNextPage, fetchNextPage, isFetching } =
-    trpc.post.timeline.useInfiniteQuery(
+    api.post.timeline.useInfiniteQuery(
       {
         limit: 10,
       },
@@ -43,7 +43,7 @@ const Feed = (): JSX.Element => {
 
   useEffect(() => {
     if ((sp as number) > 90 && hasNextPage && !isFetching) {
-      fetchNextPage();
+      void fetchNextPage(); // need refactor (reason: escaped with void)
     }
   }, [sp, hasNextPage, isFetching, fetchNextPage]);
 

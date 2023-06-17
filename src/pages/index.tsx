@@ -41,8 +41,6 @@ const Home: NextPage = () => {
 };
 
 export async function getServerSideProps() {
-  const dat = await fetch("");
-  console.log(dat.status);
   const posts = [
     {
       id: 1,
