@@ -40,7 +40,8 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps() {
+export function getServerSideProps() {
+  // const data = await fetch()
   const posts = [
     {
       id: 1,

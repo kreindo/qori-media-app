@@ -14,6 +14,9 @@ export default function AudioPlayer() {
       `http://api.alquran.cloud/v1/ayah/${RANDOM_NUM}/ar.alafasy`
     );
     const data = await quran.json();
+    if(!data) {
+        return <>loading</>
+        }
     console.log(data.data);
     setAyat(data);
   };
